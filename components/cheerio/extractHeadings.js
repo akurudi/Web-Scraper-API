@@ -15,14 +15,9 @@ const extractHeadings = text => {
     });
     return { data };
   } else {
-
-  }
-  if (data && data !== "") {
-    return { data };
-  } else {
     let error = {
       error: "true",
-      message: "No H1 tag found."
+      message: "No H1, H2 or H3 tags found."
     };
     return { data, ...error };
   }
