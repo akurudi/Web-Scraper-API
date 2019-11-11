@@ -9,6 +9,11 @@ An API server for web scraping built using [Express](https://expressjs.com/) and
 6. Meta Description
 7. Meta Keywords
 
+## Tech Stack
+1. Express
+2. Cheerio
+3. Heroku
+
 ## Installation
 You can install project dependacies using either `npm` or `yarn`.
 
