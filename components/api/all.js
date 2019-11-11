@@ -8,6 +8,7 @@ const extractKeywords = require("../cheerio/extractKeywords");
 const extractHeadings = require("../cheerio/extractHeadings");
 const extractTitle = require("../cheerio/extractTitle");
 const extractHreflangs = require("../cheerio/extractHreflangs");
+const extractOpengraph = require("../cheerio/extractOpengraph");
 
 const getAll = function(req, res) {
   res.set({
@@ -27,7 +28,8 @@ const getAll = function(req, res) {
     headings,
     keywords,
     title,
-    hreflangs
+    hreflangs,
+    opengraph
   } = req.body;
   if (!url) {
     let err = {};
@@ -44,6 +46,7 @@ const getAll = function(req, res) {
         if (title) response.title = extractTitle(text);
         if (headings) response.headings = extractHeadings(text);
         if (hreflangs) response.hreflangs = extractHreflangs(text);
+        if (opengraph) response.opengraph = extractOpengraph(text);
         res.send(JSON.stringify(response));
       })
       .catch(error => {

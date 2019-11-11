@@ -1,12 +1,13 @@
-# WEB SCRAPER
+# Web Scraping API
 An API server for web scraping built using [Express](https://expressjs.com/) and [Cheerio](https://cheerio.js.org/). This implementation provides multiple API endpoints that can be consumed in an app to scrape content like:
 
 1. Canonical
-2. Meta Keywords
-3. Meta Description
-4. Title
-5. Headings (H1, H2 and H3)
-6. Hreflangs
+2. Hreflangs
+3. Headings (H1, H2 and H3)
+4. Open Graph
+5. Title
+6. Meta Description
+7. Meta Keywords
 
 ## Installation
 You can install project dependacies using either `npm` or `yarn`.
@@ -73,31 +74,9 @@ url|`string`|URL or the webpage to scrape data from.|yes
 curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/canoncial
 ```
 
-> ### `POST /api/keywords`
+> ### `POST /api/hreflangs`
 
-Endpoint to get meta keywords from the URL.
-
-#### Headers
-
-Header | Value
--------|------
-Content-Type|application/json
-
-#### Body
-
-Name | Data Type |Description | Required
------|-----------|------------|---------
-url|`string`|URL or the webpage to scrape data from.|yes
-
-#### cURL
-
-```
-curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/keywords
-```
-
-> ### `POST /api/description`
-
-Endpoint to get meta description from the URL.
+Endpoint to get hreflang values from the URL.
 
 #### Headers
 
@@ -114,29 +93,7 @@ url|`string`|URL or the webpage to scrape data from.|yes
 #### cURL
 
 ```
-curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/description
-```
-
-> ### `POST /api/title`
-
-Endpoint to get title tage value from the URL.
-
-#### Headers
-
-Header | Value
--------|------
-Content-Type|application/json
-
-#### Body
-
-Name | Data Type |Description | Required
------|-----------|------------|---------
-url|`string`|URL or the webpage to scrape data from.|yes
-
-#### cURL
-
-```
-curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/title
+curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/hreflangs
 ```
 
 > ### `POST /api/headings`
@@ -161,9 +118,9 @@ url|`string`|URL or the webpage to scrape data from.|yes
 curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/headings
 ```
 
-> ### `POST /api/hreflangs`
+> ### `POST /api/opengraph`
 
-Endpoint to get hreflang values from the URL.
+Endpoint to get open graph values from the URL.
 
 #### Headers
 
@@ -180,12 +137,78 @@ url|`string`|URL or the webpage to scrape data from.|yes
 #### cURL
 
 ```
-curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/hreflangs
+curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/opengraph
+```
+
+> ### `POST /api/title`
+
+Endpoint to get page title value from the URL.
+
+#### Headers
+
+Header | Value
+-------|------
+Content-Type|application/json
+
+#### Body
+
+Name | Data Type |Description | Required
+-----|-----------|------------|---------
+url|`string`|URL or the webpage to scrape data from.|yes
+
+#### cURL
+
+```
+curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/title
+```
+
+> ### `POST /api/description`
+
+Endpoint to get meta description from the URL.
+
+#### Headers
+
+Header | Value
+-------|------
+Content-Type|application/json
+
+#### Body
+
+Name | Data Type |Description | Required
+-----|-----------|------------|---------
+url|`string`|URL or the webpage to scrape data from.|yes
+
+#### cURL
+
+```
+curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/description
+```
+
+> ### `POST /api/keywords`
+
+Endpoint to get meta keywords from the URL.
+
+#### Headers
+
+Header | Value
+-------|------
+Content-Type|application/json
+
+#### Body
+
+Name | Data Type |Description | Required
+-----|-----------|------------|---------
+url|`string`|URL or the webpage to scrape data from.|yes
+
+#### cURL
+
+```
+curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/keywords
 ```
 
 ## CORS Requests
 
-All API enpoints support CORS requests. You can make API requests directly from the frontend app.
+All API enpoints support CORS requests. You can make API requests directly from the frontend app using JS.
 
 ```
 {

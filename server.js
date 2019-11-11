@@ -7,6 +7,7 @@ var description = require('./components/api/description');
 var title = require('./components/api/title');
 var headings = require('./components/api/headings');
 var hreflangs = require('./components/api/hreflangs');
+var opengraph = require('./components/api/opengraph');
 
 const PORT = process.env.PORT || 4000;
 
@@ -25,6 +26,7 @@ app.all('/api/description/', description);
 app.all('/api/title/', title);
 app.all('/api/headings/', headings);
 app.all('/api/hreflangs/', hreflangs);
+app.all('/api/opengraph/', opengraph);
 app.listen(app.get('port'), function () {
 	console.log('Express server listening on port ' + app.get('port') + ' using nodemon.');
 });
