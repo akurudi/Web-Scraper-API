@@ -4,6 +4,9 @@ Accepts a URL string as an input and returns HTML body of the webpage as respons
 const https = require('https');
 
 const scrapeWebpage = url => {
+  if(url.indexOf('http') === -1) {
+    url = 'https://' + url;
+  }
   return new Promise((resolve, reject) => {
     https.get(url, response => {
       const { statusCode } = response;
