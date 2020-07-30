@@ -36,7 +36,7 @@ nodemon server.js
 #### Query Parameters
 
 Name |Description | Required
------|-----------|------------|---------
+-----|-----------|------------
 url|URL or the webpage to scrape data from.|yes
 canoncial|If set to true, will return canonical tag value.|no
 keywords|If set to true, will return meta keywords.|no
@@ -58,7 +58,7 @@ Endpoint to get canoncial tag value from the URL.
 #### Query Parameters
 
 Name |Description | Required
------|-----------|------------|---------
+-----|-----------|-----------
 url|URL or the webpage to scrape data from.|yes
 
 #### cURL
@@ -106,7 +106,7 @@ Endpoint to get open graph values from the URL.
 #### Body
 
 Name |Description | Required
------|-----------|------------|---------
+-----|-----------|-----------
 url|URL or the webpage to scrape data from.|yes
 
 #### cURL
