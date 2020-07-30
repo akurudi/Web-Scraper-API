@@ -1,4 +1,5 @@
 # Web Scraping API
+Demo API Server: https://webscraper-api.herokuapp.com
 RESTful API server for web scraping built using [Express](https://expressjs.com/) and [Cheerio](https://cheerio.js.org/). This implementation provides multiple API endpoints that can be consumed in an app to scrape content like:
 
 1. Canonical
@@ -48,7 +49,7 @@ hreflangs|If set to true, will return all hreflang tag values.|no
 #### cURL
 
 ```
-curl --location --request GET 'http://localhost:4000/api/all?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow&canonical=true&description=true&keywords=true&title=true&headings=true&hreflangs=true'
+curl --location --request GET 'https://webscraper-api.herokuapp.com/api/all?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow&canonical=true&description=true&keywords=true&title=true&headings=true&hreflangs=true'
 ```
 
 > ### `GET /api/canoncial`
@@ -64,7 +65,7 @@ url|URL or the webpage to scrape data from.|yes
 #### cURL
 
 ```
-curl --location --request GET 'http://localhost:4000/api/canonical?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
+curl --location --request GET 'https://webscraper-api.herokuapp.com/api/canonical?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
 ```
 
 > ### `GET /api/hreflangs`
@@ -80,7 +81,7 @@ url|URL or the webpage to scrape data from.|yes
 #### cURL
 
 ```
-curl --location --request GET 'http://localhost:4000/api/hreflangs?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
+curl --location --request GET 'https://webscraper-api.herokuapp.com/api/hreflangs?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
 ```
 
 > ### `GET /api/headings`
@@ -96,7 +97,7 @@ url|URL or the webpage to scrape data from.|yes
 #### cURL
 
 ```
-curl --location --request GET 'http://localhost:4000/api/headings?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
+curl --location --request GET 'https://webscraper-api.herokuapp.com/api/headings?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
 ```
 
 > ### `GET /api/opengraph`
@@ -112,7 +113,7 @@ url|URL or the webpage to scrape data from.|yes
 #### cURL
 
 ```
-curl --location --request GET 'http://localhost:4000/api/opengraph?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
+curl --location --request GET 'https://webscraper-api.herokuapp.com/api/opengraph?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
 ```
 
 > ### `GET /api/title`
@@ -128,7 +129,7 @@ url|URL or the webpage to scrape data from.|yes
 #### cURL
 
 ```
-curl --location --request GET 'http://localhost:4000/api/title?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
+curl --location --request GET 'https://webscraper-api.herokuapp.com/api/title?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
 ```
 
 > ### `GET /api/description`
@@ -144,7 +145,7 @@ url|URL or the webpage to scrape data from.|yes
 #### cURL
 
 ```
-curl --location --request GET 'http://localhost:4000/api/description?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
+curl --location --request GET 'https://webscraper-api.herokuapp.com/api/description?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
 ```
 
 > ### `GET /api/keywords`
@@ -160,7 +161,7 @@ url|URL or the webpage to scrape data from.|yes
 #### cURL
 
 ```
-curl --location --request GET 'http://localhost:4000/api/keywords?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
+curl --location --request GET 'https://webscraper-api.herokuapp.com/api/keywords?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
 ```
 
 ## CORS Requests
