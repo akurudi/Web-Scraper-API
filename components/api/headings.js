@@ -10,10 +10,13 @@ const headings = function(req, res) {
     "Access-Control-Allow-Methods": "GET",
     "Access-Control-Allow-Headers": "content-type"
   });
-  if(req.method !== "GET") {
+  if (req.method === "OPTIONS") {
+    res.send("Preflight Okay.");
+    return;
+  } else if(req.method !== "GET") {
     let err = {};
-    res.status(403)
-    err.message = "FORBIDDEN";
+    res.status(405)
+    err.message = "Method not allowed.";
     err.error = true;
     res.send(JSON.stringify(err));
     return;

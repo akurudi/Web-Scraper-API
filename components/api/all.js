@@ -21,8 +21,8 @@ const all = function (req, res) {
     return;
   } else if(req.method !== "GET") {
     let err = {};
-    res.status(403)
-    err.message = "FORBIDDEN";
+    res.status(405)
+    err.message = "Method not allowed.";
     err.error = true;
     res.send(JSON.stringify(err));
     return;
