@@ -5,7 +5,19 @@ const getURLText = require("../utils/getURLText");
 const extractKeywords = require("../cheerio/extractKeywords");
 
 const keywords = function(req, res) {
-  const { url } = req.body;
+  res.set({
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET",
+  });
+  if(req.method !== "GET") {
+    let err = {};
+    res.status(403)
+    err.message = "FORBIDDEN";
+    err.error = true;
+    res.send(JSON.stringify(err));
+    return;
+  }
+  const { url } = req.query;
   if (!url) {
     let err = {};
     err.message = "URL is not defined";

@@ -10,15 +10,20 @@ const extractTitle = require("../cheerio/extractTitle");
 const extractHreflangs = require("../cheerio/extractHreflangs");
 const extractOpengraph = require("../cheerio/extractOpengraph");
 
-const getAll = function(req, res) {
+const all = function (req, res) {
   res.set({
-    "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "content-type",
-    "Access-Control-Allow-Methods": "POST"
+    "Access-Control-Allow-Methods": "GET",
   });
   if (req.method === "OPTIONS") {
     res.send("Preflight Okay.");
+    return;
+  } else if(req.method !== "GET") {
+    let err = {};
+    res.status(403)
+    err.message = "FORBIDDEN";
+    err.error = true;
+    res.send(JSON.stringify(err));
     return;
   }
   const {
@@ -29,8 +34,8 @@ const getAll = function(req, res) {
     keywords,
     title,
     hreflangs,
-    opengraph
-  } = req.body;
+    opengraph,
+  } = req.query;
   if (!url) {
     let err = {};
     err.message = "URL is not defined";
@@ -38,7 +43,7 @@ const getAll = function(req, res) {
     res.send(JSON.stringify(err));
   } else {
     getURLText(url)
-      .then(text => {
+      .then((text) => {
         let response = {};
         if (canonical) response.canonical = extractCanonical(text);
         if (keywords) response.keywords = extractKeywords(text);
@@ -49,7 +54,7 @@ const getAll = function(req, res) {
         if (opengraph) response.opengraph = extractOpengraph(text);
         res.send(JSON.stringify(response));
       })
-      .catch(error => {
+      .catch((error) => {
         let err = {};
         err.message = error.message || error; //http protocol sets error.message but http.get sets only error
         err.error = true;
@@ -59,4 +64,4 @@ const getAll = function(req, res) {
   }
 };
 
-module.exports = getAll;
+module.exports = all;

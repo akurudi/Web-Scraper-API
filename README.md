@@ -1,5 +1,5 @@
 # Web Scraping API
-An API server for web scraping built using [Express](https://expressjs.com/) and [Cheerio](https://cheerio.js.org/). This implementation provides multiple API endpoints that can be consumed in an app to scrape content like:
+RESTful API server for web scraping built using [Express](https://expressjs.com/) and [Cheerio](https://cheerio.js.org/). This implementation provides multiple API endpoints that can be consumed in an app to scrape content like:
 
 1. Canonical
 2. Hreflangs
@@ -29,197 +29,148 @@ nodemon server.js
 
 ## API Endpoints
 
-> ### `POST /api/all`
+> ### `GET /api/all`
 
- Endpoint to get all data at once from the URL. You can selectively request a subset of data also.
+ Endpoint to get all data at once from the URL. You can selectively request a subset of data.
 
-#### Headers
+#### Query Parameters
 
-Header | Value
--------|------
-Content-Type|application/json
-
-#### Body
-
-Name | Data Type |Description | Required
+Name |Description | Required
 -----|-----------|------------|---------
-url|`string`|URL or the webpage to scrape data from.|yes
-canoncial|`bool`|If set to true, will return canonical tag value.|no
-keywords|`bool`|If set to true, will return meta keywords.|no
-description|`bool`|If set to true, will return meta description.|no
-title|`bool`|If set to true, will return title tag value.|no
-headings|`bool`|If set to true, will return H1, H2 and H3 tage values.|no
-hreflangs|`bool`|If set to true, will return all hreflang tag values.|no
+url|URL or the webpage to scrape data from.|yes
+canoncial|If set to true, will return canonical tag value.|no
+keywords|If set to true, will return meta keywords.|no
+description|If set to true, will return meta description.|no
+title|If set to true, will return title tag value.|no
+headings|If set to true, will return H1, H2 and H3 tag values.|no
+hreflangs|If set to true, will return all hreflang tag values.|no
 
 #### cURL
 
 ```
-curl -d '{"url":"https://example.com","canonical":true,"keywords":true,"description":true,"title":true,"headings":true,"hreflangs":true}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/all
+curl --location --request GET 'http://localhost:4000/api/all?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow&canonical=true&description=true&keywords=true&title=true&headings=true&hreflangs=true'
 ```
 
-> ### `POST /api/canoncial`
+> ### `GET /api/canoncial`
 
 Endpoint to get canoncial tag value from the URL.
 
-#### Headers
+#### Query Parameters
 
-Header | Value
--------|------
-Content-Type|application/json
-
-#### Body
-
-Name | Data Type |Description | Required
+Name |Description | Required
 -----|-----------|------------|---------
-url|`string`|URL or the webpage to scrape data from.|yes
+url|URL or the webpage to scrape data from.|yes
 
 #### cURL
 
 ```
-curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/canoncial
+curl --location --request GET 'http://localhost:4000/api/canonical?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
 ```
 
-> ### `POST /api/hreflangs`
+> ### `GET /api/hreflangs`
 
 Endpoint to get hreflang values from the URL.
 
-#### Headers
-
-Header | Value
--------|------
-Content-Type|application/json
-
 #### Body
 
-Name | Data Type |Description | Required
------|-----------|------------|---------
-url|`string`|URL or the webpage to scrape data from.|yes
+Name | Description | Required
+-----|-----------|------------
+url|URL or the webpage to scrape data from.|yes
 
 #### cURL
 
 ```
-curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/hreflangs
+curl --location --request GET 'http://localhost:4000/api/hreflangs?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
 ```
 
-> ### `POST /api/headings`
+> ### `GET /api/headings`
 
 Endpoint to get H1, H2 and H3 tag values from the URL.
 
-#### Headers
-
-Header | Value
--------|------
-Content-Type|application/json
-
 #### Body
 
-Name | Data Type |Description | Required
------|-----------|------------|---------
-url|`string`|URL or the webpage to scrape data from.|yes
+Name | Description | Required
+-----|-----------|-----------
+url|URL or the webpage to scrape data from.|yes
 
 #### cURL
 
 ```
-curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/headings
+curl --location --request GET 'http://localhost:4000/api/headings?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
 ```
 
-> ### `POST /api/opengraph`
+> ### `GET /api/opengraph`
 
 Endpoint to get open graph values from the URL.
 
-#### Headers
-
-Header | Value
--------|------
-Content-Type|application/json
-
 #### Body
 
-Name | Data Type |Description | Required
+Name |Description | Required
 -----|-----------|------------|---------
-url|`string`|URL or the webpage to scrape data from.|yes
+url|URL or the webpage to scrape data from.|yes
 
 #### cURL
 
 ```
-curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/opengraph
+curl --location --request GET 'http://localhost:4000/api/opengraph?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
 ```
 
-> ### `POST /api/title`
+> ### `GET /api/title`
 
 Endpoint to get page title value from the URL.
 
-#### Headers
-
-Header | Value
--------|------
-Content-Type|application/json
-
 #### Body
 
-Name | Data Type |Description | Required
------|-----------|------------|---------
-url|`string`|URL or the webpage to scrape data from.|yes
+Name |Description | Required
+-----|-----------|------------
+url|URL or the webpage to scrape data from.|yes
 
 #### cURL
 
 ```
-curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/title
+curl --location --request GET 'http://localhost:4000/api/title?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
 ```
 
-> ### `POST /api/description`
+> ### `GET /api/description`
 
 Endpoint to get meta description from the URL.
 
-#### Headers
-
-Header | Value
--------|------
-Content-Type|application/json
-
 #### Body
 
-Name | Data Type |Description | Required
------|-----------|------------|---------
-url|`string`|URL or the webpage to scrape data from.|yes
+Name | Description | Required
+-----|-----------|------------
+url|URL or the webpage to scrape data from.|yes
 
 #### cURL
 
 ```
-curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/description
+curl --location --request GET 'http://localhost:4000/api/description?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
 ```
 
-> ### `POST /api/keywords`
+> ### `GET /api/keywords`
 
 Endpoint to get meta keywords from the URL.
 
-#### Headers
-
-Header | Value
--------|------
-Content-Type|application/json
-
 #### Body
 
-Name | Data Type |Description | Required
------|-----------|------------|---------
-url|`string`|URL or the webpage to scrape data from.|yes
+Name | Description | Required
+-----|-----------|------------
+url|URL or the webpage to scrape data from.|yes
 
 #### cURL
 
 ```
-curl -d '{"url":"https://example.com"}' -H "Content-Type: application/json" -X POST http://localhost:4000/api/keywords
+curl --location --request GET 'http://localhost:4000/api/keywords?url=https://www.shopmarriott.com/product.aspx?the-marriott-pillow'
 ```
 
 ## CORS Requests
 
-All API enpoints support CORS requests. You can make API requests directly from the frontend app using JS.
+All API enpoints support CORS requests. You can make API requests directly from the frontend app.
 
 ```
 {
-  "Content-Type": "application/json",
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "content-type",
-  "Access-Control-Allow-Methods": "POST"
+  "Access-Control-Allow-Methods": "GET"
 }
 ```
