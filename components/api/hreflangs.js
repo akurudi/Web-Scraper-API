@@ -8,6 +8,7 @@ const hreflangs = function(req, res) {
   res.set({
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET",
+    "Access-Control-Allow-Headers": "content-type"
   });
   if(req.method !== "GET") {
     let err = {};
