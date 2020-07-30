@@ -15,7 +15,7 @@ RESTful API server for web scraping built using [Express](https://expressjs.com/
 3. Heroku
 
 ## Installation
-You can install project dependacies using either `npm` or `yarn`.
+`yarn install`
 
 ## Usage
 To run app locally, install dependancies and run
